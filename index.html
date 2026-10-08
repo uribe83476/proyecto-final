@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f7fb">
+  <meta name="description" content="Herramienta educativa para orientar sobre agudeza visual y discriminación de colores. No sustituye una evaluación profesional.">
+  <title>Visión Clara | Orientador visual</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Visión Clara, inicio">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M3 16s4.7-8 13-8 13 8 13 8-4.7 8-13 8S3 16 3 16Z" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+      <span>visión<span class="brand-light">clara</span></span>
+    </a>
+    <span class="topbar-label">Orientación visual · uso educativo</span>
+  </header>
+
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-content">
+        <p class="eyebrow"><span class="status-dot"></span> Herramienta de orientación</p>
+        <h1 id="page-title">Conoce un poco más<br class="desktop-break"> sobre tu visión.</h1>
+        <p class="hero-copy">Realiza actividades sencillas para explorar la nitidez visual y la percepción de colores. Toma unos minutos y puedes hacerlas desde tu navegador.</p>
+        <a class="hero-link" href="#acuity">Comenzar las pruebas <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-eye">
+          <svg viewBox="0 0 140 100" fill="none"><path d="M8 50S29 15 70 15s62 35 62 35-21 35-62 35S8 50 8 50Z" fill="#fff" fill-opacity=".13" stroke="white" stroke-width="3"/><circle cx="70" cy="50" r="20" fill="#fff" fill-opacity=".2" stroke="white" stroke-width="3"/><circle cx="70" cy="50" r="8" fill="white"/></svg>
+        </div>
+        <span class="art-spark spark-one"></span><span class="art-spark spark-two"></span>
+        <span class="art-caption">Tu salud visual<br>también importa</span>
+      </div>
+    </section>
+
+    <aside class="notice" role="note">
+      <span class="notice-icon" aria-hidden="true">i</span>
+      <p><strong>Una orientación, no un diagnóstico.</strong> Estas actividades no pueden determinar exactamente qué condición tiene una persona ni sustituyen una evaluación con optometrista u oftalmólogo. Un resultado normal tampoco descarta problemas de visión.</p>
+    </aside>
+
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Evaluación inicial</p>
+        <h2>Dos pruebas sencillas</h2>
+      </div>
+      <span class="time-badge"><span aria-hidden="true">◷</span> Aproximadamente 5 min</span>
+    </div>
+
+    <section class="card" id="acuity" aria-labelledby="acuity-title">
+      <div class="card-heading">
+        <span class="step-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 4v16M4 4h15M4 12h11M4 20h15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </span>
+        <div>
+          <p class="card-kicker">PRUEBA 01</p>
+          <h2 id="acuity-title">Nitidez visual</h2>
+        </div>
+      </div>
+      <p class="card-description">Explora cómo distingues símbolos a diferentes tamaños, probando cada ojo por separado.</p>
+
+      <div class="instruction-panel">
+        <h3>Antes de comenzar</h3>
+        <ul>
+          <li>Busca un lugar bien iluminado y evita reflejos en la pantalla.</li>
+          <li>Colócate aproximadamente a <strong>40 cm</strong> de la pantalla.</li>
+          <li>Cubre un ojo sin presionarlo. Si usas lentes para ver de lejos, puedes repetir la prueba con ellos puestos.</li>
+        </ul>
+      </div>
+
+      <div class="person-field">
+        <label for="person">Nombre o código <span>(opcional)</span></label>
+        <input id="person" type="text" maxlength="80" placeholder="Este dato no se guarda">
+      </div>
+
+      <details class="calibration">
+        <summary>Calibrar el tamaño de pantalla</summary>
+        <div class="calibration-content">
+          <p>Mide la línea con una regla y ajusta el control hasta que mida exactamente 5 cm. Si no puedes calibrarla, considera el resultado solo como una demostración visual.</p>
+          <div class="ruler-wrap"><div id="ruler" aria-label="Línea de calibración"></div><span>Debe medir 5 cm</span></div>
+          <div class="range-row">
+            <label for="scale">Ajuste de escala</label>
+            <input id="scale" type="range" min="0.65" max="1.7" value="1" step="0.005">
+            <output id="scale-value" for="scale">100%</output>
+          </div>
+        </div>
+      </details>
+
+      <div class="actions">
+        <button id="start-right" class="button button-primary">Probar ojo derecho <span aria-hidden="true">→</span></button>
+        <button id="start-left" class="button button-secondary">Probar ojo izquierdo <span aria-hidden="true">→</span></button>
+      </div>
+
+      <div id="acuity-test" class="test-area" hidden>
+        <div class="test-topline">
+          <div id="acuity-status" class="test-status" aria-live="polite"></div>
+          <span class="live-badge"><span class="status-dot"></span> En curso</span>
+        </div>
+        <div class="optotype"><svg id="optotype" viewBox="0 0 100 100" role="img" aria-label="Letra E en una dirección"></svg></div>
+        <p class="answer-prompt">¿Hacia dónde apunta la letra E?</p>
+        <div class="answer-grid" aria-label="Elige hacia dónde apunta la E">
+          <button class="direction-button" data-answer="up" aria-label="Arriba">↑</button>
+          <button class="direction-button" data-answer="right" aria-label="Derecha">→</button>
+          <button class="direction-button" data-answer="down" aria-label="Abajo">↓</button>
+          <button class="direction-button" data-answer="left" aria-label="Izquierda">←</button>
+        </div>
+      </div>
+      <div id="acuity-results" class="results" aria-live="polite"></div>
+    </section>
+
+    <section class="card" aria-labelledby="color-title">
+      <div class="card-heading">
+        <span class="step-icon color-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3a9 9 0 1 0 0 18h1.2a2.3 2.3 0 0 0 1.5-4c-.8-.7-.2-2 1-2h1.1A4.2 4.2 0 0 0 21 10.8C21 6.5 17 3 12 3Z" stroke="currentColor" stroke-width="1.8"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10" cy="7.5" r="1" fill="currentColor"/><circle cx="14.5" cy="7.5" r="1" fill="currentColor"/></svg>
+        </span>
+        <div>
+          <p class="card-kicker">PRUEBA 02</p>
+          <h2 id="color-title">Percepción de colores</h2>
+        </div>
+      </div>
+      <p class="card-description">Observa cada lámina y selecciona el número que distingues. El brillo y la configuración de cada pantalla pueden modificar lo que ves.</p>
+      <div class="caution-note"><strong>Ten en cuenta:</strong> esta actividad usa láminas generadas en pantalla; no identifica de forma fiable el daltonismo, su tipo ni su causa.</div>
+      <button id="start-color" class="button button-primary">Iniciar actividad de colores <span aria-hidden="true">→</span></button>
+      <div id="color-test" class="test-area" hidden>
+        <div class="test-topline">
+          <div id="color-status" class="test-status" aria-live="polite"></div>
+          <span class="live-badge"><span class="status-dot"></span> En curso</span>
+        </div>
+        <div class="progress" role="progressbar" aria-label="Progreso de la actividad" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0"><span id="color-progress"></span></div>
+        <div class="color-stage">
+          <canvas id="plate" width="260" height="260" role="img" aria-label="Lámina de puntos de colores"></canvas>
+          <div class="color-answer">
+            <p>¿Qué número puedes distinguir?</p>
+            <div class="choices" id="color-choices"></div>
+          </div>
+        </div>
+      </div>
+      <div id="color-results" class="results" aria-live="polite"></div>
+    </section>
+
+    <!-- Esta sección presenta los datos remotos separados de las pruebas personales. -->
+    <section class="card api-card" aria-labelledby="api-title">
+      <div class="card-heading">
+        <span class="step-icon api-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 5.5h16M4 12h16M4 18.5h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="12" r="1" fill="currentColor"/><circle cx="7" cy="18.5" r="1" fill="currentColor"/></svg>
+        </span>
+        <div>
+          <p class="card-kicker">DATOS EXTERNOS</p>
+          <h2 id="api-title">Registros de oftalmología</h2>
+        </div>
+      </div>
+      <p class="card-description">Consulta y filtra los registros que entrega la API del proyecto. Son datos independientes de tus pruebas y no sirven para diagnosticar a quien usa esta página.</p>
+      <div class="api-caution"><strong>Privacidad y contexto:</strong> la API incluye nombres junto con diagnósticos. Para evitar exponer esos datos personales, esta página no muestra ni conserva los nombres. No podemos verificar si los demás registros son reales o de ejemplo; interprétalos solo como información publicada por la API.</div>
+      <!-- JavaScript rellena estos espacios con tematica y cantidad de la respuesta. -->
+      <div class="api-overview" aria-label="Resumen informado por la API">
+        <div class="api-stat">
+          <span class="api-stat-label">Temática de la API</span>
+          <strong id="api-theme">—</strong>
+        </div>
+        <div class="api-stat">
+          <span class="api-stat-label">Registros informados</span>
+          <strong id="api-total">—</strong>
+        </div>
+      </div>
+      <!-- Los controles quedan desactivados hasta que la API entrega datos válidos. -->
+      <div class="api-controls">
+        <button id="load-api" class="button button-primary">Cargar registros <span aria-hidden="true">↻</span></button>
+        <label class="api-search" for="api-search">
+          <span>Buscar en los registros</span>
+          <input id="api-search" type="search" placeholder="ID, diagnóstico, edad o agudeza" autocomplete="off" disabled>
+        </label>
+        <label class="api-search api-diagnosis-filter" for="api-diagnosis-filter">
+          <span>Filtrar por diagnóstico</span>
+          <select id="api-diagnosis-filter" disabled>
+            <option value="">Todos los diagnósticos</option>
+          </select>
+        </label>
+        <label class="api-search api-sort" for="api-sort">
+          <span>Ordenar por</span>
+          <select id="api-sort" disabled>
+            <option value="id">Identificador</option>
+            <option value="age-asc">Edad: menor a mayor</option>
+            <option value="age-desc">Edad: mayor a menor</option>
+            <option value="diagnosis">Diagnóstico A-Z</option>
+          </select>
+        </label>
+      </div>
+      <!-- Estos mensajes anuncian el estado de red y el resultado de los filtros. -->
+      <p id="api-fetch-info" class="api-fetch-info" role="status" aria-live="polite">Los registros se cargarán automáticamente al abrir esta página.</p>
+      <p id="api-status" class="api-status" aria-live="polite"></p>
+      <!-- JavaScript crea aquí las tarjetas; el contenedor está oculto hasta recibir datos. -->
+      <div id="api-results" class="api-results" aria-label="Registros de oftalmología" hidden></div>
+      <button id="api-load-more" class="button button-secondary api-load-more" hidden>Mostrar más registros</button>
+      <p class="api-source">Fuente: <a href="https://proyecto-final-programacion-creativa-production.up.railway.app/api/oftalmologia" target="_blank" rel="noopener noreferrer">API de oftalmología</a></p>
+    </section>
+
+    <section class="card summary-card" id="summary-card" hidden aria-labelledby="summary-title">
+      <div class="card-heading">
+        <span class="step-icon summary-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8"/><path d="M14 3v6h5M9 14h6M9 17h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </span>
+        <div>
+          <p class="card-kicker">TUS RESULTADOS</p>
+          <h2 id="summary-title">Resumen orientativo</h2>
+        </div>
+      </div>
+      <div class="report" id="summary"></div>
+      <p class="hint">Lleva este resumen a un profesional de salud visual. Si notas pérdida repentina de visión, dolor intenso, destellos o una sombra como cortina, busca atención médica urgente.</p>
+      <button id="print-summary" class="button button-secondary">Imprimir o guardar resumen <span aria-hidden="true">↗</span></button>
+    </section>
+
+    <footer class="page-footer">
+      <p>Privacidad primero: las respuestas y el nombre opcional no se guardan ni se envían. La lista de casos sí se solicita a la API externa para mostrar sus datos publicados.</p>
+      <p>Esta herramienta es educativa y no reemplaza una evaluación o diagnóstico por un profesional de salud visual.</p>
+    </footer>
+  </main>
+</body>
+</html>
